@@ -1,6 +1,5 @@
-import uuid from "uuid"
-
 import ArrayUtil from "@/Utils/ArrayUtil"
+import CryptUtil from "@/Utils/CryptUtil"
 
 import { CardData, CardTypes, CardColors } from "@uno-game/protocols"
 
@@ -60,7 +59,7 @@ class CardService {
 		this.cardTypes.map(cardType => {
 			this.cardColors.map(cardColor => {
 				const cardPictureSrc = this.buildCardPictureSrc(cardType, cardColor)
-				const cardId = uuid.v4()
+				const cardId = CryptUtil.makeUUID()
 
 				cardStack.push({
 					id: cardId,
@@ -79,7 +78,7 @@ class CardService {
 			const yellowCardPictureSrc = this.buildCardPictureSrc("buy-4", "yellow")
 			const greenCardPictureSrc = this.buildCardPictureSrc("buy-4", "green")
 
-			const cardId = uuid.v4()
+			const cardId = CryptUtil.makeUUID()
 
 			cardStack.push({
 				id: cardId,
@@ -105,7 +104,7 @@ class CardService {
 			const yellowCardPictureSrc = this.buildCardPictureSrc("change-color", "yellow")
 			const greenCardPictureSrc = this.buildCardPictureSrc("change-color", "green")
 
-			const cardId = uuid.v4()
+			const cardId = CryptUtil.makeUUID()
 
 			cardStack.push({
 				id: cardId,

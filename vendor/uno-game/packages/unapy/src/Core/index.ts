@@ -5,10 +5,14 @@ import ServerHandlerModule from "@/Modules/ServerHandlerModule"
 
 class Core {
 	async boot () {
-		await Server.boot()
-		await Socket.boot(Server.http)
-
-		ServerHandlerModule.onSocketStart()
+		try {
+			await Server.boot()
+			await Socket.boot(Server.http)
+			ServerHandlerModule.onSocketStart()
+		} catch (error) {
+			console.error(error)
+			process.exit(1)
+		}
 	}
 }
 
