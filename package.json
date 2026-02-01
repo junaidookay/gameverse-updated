@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node -e \"const fs=require('fs');const {spawn}=require('child_process');const nextBin=require.resolve('next/dist/bin/next');const cwd=fs.realpathSync(process.cwd());spawn(process.execPath,[nextBin,'build'],{stdio:'inherit',cwd});\"",
     "dev": "node -e \"const fs=require('fs');const {spawn}=require('child_process');const nextBin=require.resolve('next/dist/bin/next');const cwd=fs.realpathSync(process.cwd());spawn(process.execPath,[nextBin,'dev','--webpack','-H','0.0.0.0','-p','3000'],{stdio:'inherit',cwd});\"",
+    "dev:uno-classic": "pnpm run dev",
     "lint": "eslint . --ignore-pattern .next --ignore-pattern .next-dev",
     "start": "node -e \"const fs=require('fs');const {spawn}=require('child_process');const nextBin=require.resolve('next/dist/bin/next');const cwd=fs.realpathSync(process.cwd());spawn(process.execPath,[nextBin,'start'],{stdio:'inherit',cwd});\"",
     "typecheck": "tsc --noEmit"

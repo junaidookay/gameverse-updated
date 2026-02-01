@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
@@ -10,6 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { createClient } from "@/lib/supabase/client"
 import { getAvatarUrl } from "@/lib/utils"
 import type { User } from "@supabase/supabase-js"
+import parklanPaloozaLogo from "../../parklan-palooza.png"
 
 export function LandingPage() {
   return <Landing />
@@ -90,8 +92,8 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-            <span className="font-display font-bold text-foreground">GV</span>
+          <div className="relative w-10 h-10 rounded-lg overflow-hidden">
+            <Image src={parklanPaloozaLogo} alt="Parklan" fill className="object-contain" priority />
           </div>
           <span className="font-display text-xl font-bold text-secondary">GameVerse</span>
         </div>
@@ -136,7 +138,7 @@ const Navbar = () => {
           <Button asChild variant="secondary" className="gap-2">
             <Link href="/app">
               <Gamepad2 className="w-4 h-4" />
-              <span>Play Now</span>
+              <span>Enter Parklan</span>
             </Link>
           </Button>
         </div>
@@ -159,8 +161,8 @@ const HeroSection = () => {
       <div
         className="absolute inset-0 opacity-5 z-[1]"
         style={{
-          backgroundImage: `linear-gradient(hsl(var(--foreground)) 1px, transparent 1px),
-                            linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(var(--foreground) 1px, transparent 1px),
+                            linear-gradient(90deg, var(--foreground) 1px, transparent 1px)`,
           backgroundSize: "50px 50px",
         }}
       />

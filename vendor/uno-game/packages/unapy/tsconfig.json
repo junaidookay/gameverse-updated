@@ -1,0 +1,32 @@
+{
+	"rootDir": "src",
+	"exclude": [
+		"../unoenty/**"
+	],
+	"compilerOptions": {
+		"types": [
+			"node"
+		],
+		"outDir": "dist",
+		"module": "CommonJS",
+		"esModuleInterop": true,
+		"sourceMap": false,
+    "rootDir": "src",
+    "target": "es6",
+    "lib": [
+			"ES2018"
+		],
+    "allowJs": true,
+    "strictPropertyInitialization": false,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+	}
+}

@@ -40,6 +40,39 @@ export default function GamesPage() {
           isMultiplayer: false,
           href: "/blackjack",
         }
+        const snakeGame: GameCardProps = {
+          id: "snake",
+          name: "Snake",
+          category: "Puzzle",
+          players: 120,
+          difficulty: "Easy",
+          thumbnail: "🐍",
+          description: "Classic arcade snake game in your browser",
+          isMultiplayer: false,
+          href: "/snake",
+        }
+        const unoGame: GameCardProps = {
+          id: "uno",
+          name: "UNO",
+          category: "Card Games",
+          players: 78,
+          difficulty: "Easy",
+          thumbnail: "🃏",
+          description: "Classic UNO with points tracked on your profile",
+          isMultiplayer: false,
+          href: "/uno",
+        }
+        const unoClassicGame: GameCardProps = {
+          id: "uno-classic",
+          name: "UNO (Classic)",
+          category: "Card Games",
+          players: 156,
+          difficulty: "Easy",
+          thumbnail: "🃏",
+          description: "Original multiplayer UNO lobby and matchmaking",
+          isMultiplayer: true,
+          href: "/uno-classic",
+        }
         if (response.ok) {
           const data = await response.json()
           const mapped = data.map((game: any) => ({
@@ -52,9 +85,9 @@ export default function GamesPage() {
             description: game.description,
             isMultiplayer: game.is_multiplayer,
           }))
-          setGames([...mapped, chessGame, blackjackGame])
+          setGames([...mapped, chessGame, blackjackGame, snakeGame, unoGame, unoClassicGame])
         } else {
-          setGames([chessGame, blackjackGame])
+          setGames([chessGame, blackjackGame, snakeGame, unoGame, unoClassicGame])
         }
       } catch (error) {
         console.error("Error fetching games:", error)
@@ -80,6 +113,39 @@ export default function GamesPage() {
             description: "Classic blackjack with points tracked on your profile",
             isMultiplayer: false,
             href: "/blackjack",
+          },
+          {
+            id: "snake",
+            name: "Snake",
+            category: "Puzzle",
+            players: 120,
+            difficulty: "Easy",
+            thumbnail: "🐍",
+            description: "Classic arcade snake game in your browser",
+            isMultiplayer: false,
+            href: "/snake",
+          },
+          {
+            id: "uno",
+            name: "UNO",
+            category: "Card Games",
+            players: 78,
+            difficulty: "Easy",
+            thumbnail: "🃏",
+            description: "Classic UNO with points tracked on your profile",
+            isMultiplayer: false,
+            href: "/uno",
+          },
+          {
+            id: "uno-classic",
+            name: "UNO (Classic)",
+            category: "Card Games",
+            players: 156,
+            difficulty: "Easy",
+            thumbnail: "🃏",
+            description: "Original multiplayer UNO lobby and matchmaking",
+            isMultiplayer: true,
+            href: "/uno-classic",
           },
         ])
       } finally {

@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -11,6 +12,7 @@ import { Menu, X, LogOut, Shield, ChevronDown } from "lucide-react"
 import { useState, useEffect } from "react"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { createClient } from "@/lib/supabase/client"
+import parklanPaloozaLogo from "../parklan-palooza.png"
 
 const mainNavItems = [
   { href: "/dashboard", label: "Dashboard", icon: "🎮" },
@@ -82,9 +84,9 @@ export function MainNav() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/dashboard" className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-            <span className="text-sm font-bold text-white">GV</span>
+        <Link href="/" className="flex items-center gap-2">
+          <div className="relative w-8 h-8 rounded-lg overflow-hidden">
+            <Image src={parklanPaloozaLogo} alt="Parklan" fill className="object-contain" priority />
           </div>
           <span className="font-bold text-lg glow-text hidden sm:inline">GameVerse</span>
         </Link>

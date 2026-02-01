@@ -1,0 +1,43 @@
+{
+  "name": "@uno-game/unapy",
+  "version": "0.0.0",
+  "description": "The UNO Game API",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node -r module-alias/register dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "dev:resources": "docker-compose up",
+    "build": "rm -rf dist && tsc && cp -r src/Assets dist/Assets",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.6",
+    "@types/ioredis": "^4.26.0",
+    "@types/node": "^14.0.1",
+    "@types/socket.io": "^2.1.8",
+    "@types/uuid": "^8.0.0",
+    "@uno-game/protocols": "*",
+    "nodemon": "^2.0.4",
+    "sucrase": "^3.15.0",
+    "tsconfig-paths": "^3.9.0"
+  },
+  "dependencies": {
+    "@uno-game/error-handler": "*",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "ioredis": "^4.27.1",
+    "module-alias": "^2.2.2",
+    "p-queue": "^6.6.2",
+    "socket.io": "^2.3.0",
+    "socket.io-msgpack-parser": "^2.2.0"
+  },
+  "_moduleAliases": {
+    "@": "./dist"
+  },
+  "optionalDependencies": {
+    "@uno-game/protocols": "*",
+    "@uno-game/error-handler": "*"
+  }
+}
