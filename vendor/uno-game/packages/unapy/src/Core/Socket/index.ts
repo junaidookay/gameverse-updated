@@ -1,7 +1,6 @@
 import socket, { Server as SocketServer } from "socket.io"
 import { Server as HttpServer } from "http"
 import MsgPackParser from "socket.io-msgpack-parser"
-import { createAdapter } from "socket.io-redis"
 import Redis from "ioredis"
 
 import SocketService from "@/Services/SocketService"
@@ -20,6 +19,8 @@ class Socket {
 	}
 
 	private static setupAdapter (): void {
+		const { createAdapter } = require("socket.io-redis")
+
 		const pubClient = new Redis({
 			host: redisConfig.host,
 			port: redisConfig.port,
