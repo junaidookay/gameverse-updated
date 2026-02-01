@@ -41,7 +41,13 @@ class Socket {
 			pingInterval: 15000,
 			pingTimeout: 10000,
 			...({ parser: MsgPackParser }),
+			...({ origins: "*:*" }),
 		})
+
+		const ioAny = this.io as any
+		if (typeof ioAny.origins === "function") {
+			ioAny.origins((origin: string, callback: (err: Error | null, allow?: boolean) => void) => callback(null, true))
+		}
 	}
 
 	private static setupListeners (): void {

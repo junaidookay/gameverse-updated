@@ -24,8 +24,9 @@ class Server {
 	}
 
 	private static start () {
-		Server.http.listen(process.env.PORT, () => {
-			console.log(`Server is running... [PORT ${process.env.PORT}]`)
+		const port = Number(process.env.PORT) || 4000
+		Server.http.listen(port, "0.0.0.0", () => {
+			console.log(`Server is running... [PORT ${port}]`)
 		})
 	}
 
