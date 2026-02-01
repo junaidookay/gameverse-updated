@@ -5,14 +5,19 @@ import Link from "next/link"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 
-const unoClassicUrl = process.env.NEXT_PUBLIC_UNO_CLASSIC_URL ?? "http://localhost:4000"
-
 export default function UnoClassicPage() {
   const iframeRef = useRef<HTMLIFrameElement | null>(null)
   const [phase, setPhase] = useState<"start" | "playing">("start")
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [serverStarting, setServerStarting] = useState(false)
   const [serverReady, setServerReady] = useState(false)
+
+  const unoClassicUrl = useMemo(() => {
+    const configuredUrl = process.env.NEXT_PUBLIC_UNO_CLASSIC_URL?.trim()
+    if (configuredUrl) return configuredUrl
+    if (process.env.NODE_ENV === "development") return "http://localhost:4000"
+    return ""
+  }, [])
 
   useEffect(() => {
     let cancelled = false
@@ -52,7 +57,7 @@ export default function UnoClassicPage() {
     const start = async () => {
       try {
         if (process.env.NODE_ENV !== "development") {
-          setServerReady(true)
+          setServerReady(Boolean(unoClassicUrl))
           return
         }
         setServerStarting(true)
@@ -73,10 +78,11 @@ export default function UnoClassicPage() {
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [unoClassicUrl])
 
   const startGame = () => {
     if (phase !== "start") return
+    if (!unoClassicUrl) return
     setPhase("playing")
   }
 
@@ -132,7 +138,13 @@ export default function UnoClassicPage() {
               <div className="w-full max-w-md text-center space-y-4">
                 <h2 className="text-2xl font-semibold">Ready to play?</h2>
                 <p className="text-muted-foreground">
-                  {serverStarting ? "Starting UNO Classic..." : serverReady ? "UNO Classic is ready." : "UNO Classic is not ready yet."}
+                  {serverStarting
+                    ? "Starting UNO Classic..."
+                    : serverReady
+                      ? "UNO Classic is ready."
+                      : unoClassicUrl
+                        ? "UNO Classic is not ready yet."
+                        : "UNO Classic URL is not configured."}
                 </p>
                 <Button size="lg" className="w-full" onClick={startGame} disabled={!serverReady}>
                   Open Game
@@ -140,14 +152,28 @@ export default function UnoClassicPage() {
               </div>
             </div>
           ) : (
-            <iframe
-              ref={iframeRef}
-              title="UNO Classic"
-              src={unoClassicUrl}
-              className="w-full bg-transparent block"
-              style={{ height: "100%", minHeight: 700, display: "block" }}
-              allow="autoplay; clipboard-read; clipboard-write"
-            />
+            unoClassicUrl ? (
+              <iframe
+                ref={iframeRef}
+                title="UNO Classic"
+                src={unoClassicUrl}
+                className="w-full bg-transparent block"
+                style={{ height: "100%", minHeight: 700, display: "block" }}
+                allow="autoplay; clipboard-read; clipboard-write"
+              />
+            ) : (
+              <div className="h-full min-h-[560px] flex items-center justify-center p-6">
+                <div className="w-full max-w-md text-center space-y-4">
+                  <h2 className="text-2xl font-semibold">UNO Classic URL missing</h2>
+                  <p className="text-muted-foreground">Set NEXT_PUBLIC_UNO_CLASSIC_URL in your deployment environment.</p>
+                  <Link href="/games">
+                    <Button variant="outline" className="border-border bg-transparent w-full">
+                      Back to Games
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            )
           )}
         </Card>
 
