@@ -169,25 +169,27 @@ const HeroSection = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-6"
-          >
-            <Image
-              src={parklanPaloozaHeroLogo}
-              alt="Parklan Palooza"
-              width={220}
-              height={60}
-              className="h-10 md:h-12 w-auto mx-auto mb-8 select-none pointer-events-none"
-              priority
-            />
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-              2,500+ Players Online Now
-            </span>
-          </motion.div>
+          <div className="relative mb-6">
+            <div className="h-10 md:h-12 mb-8" aria-hidden />
+            <div className="absolute left-1/2 -top-32 -translate-x-1/2 z-10">
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+                <Image
+                  src={parklanPaloozaHeroLogo}
+                  alt="Parklan Palooza"
+                  width={220}
+                  height={60}
+                  className="h-10 md:h-12 w-auto mx-auto select-none pointer-events-none"
+                  priority
+                />
+              </motion.div>
+            </div>
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium backdrop-blur-sm">
+                <span className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
+                2,500+ Players Online Now
+              </span>
+            </motion.div>
+          </div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
