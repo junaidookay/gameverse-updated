@@ -180,7 +180,7 @@ const HeroSection = () => {
               alt="Parklan Palooza"
               width={220}
               height={60}
-              className="h-10 md:h-12 w-auto mx-auto mb-2 select-none pointer-events-none"
+              className="h-10 md:h-12 w-auto mx-auto mb-8 select-none pointer-events-none"
               priority
             />
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium backdrop-blur-sm">
